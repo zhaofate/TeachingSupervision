@@ -10,39 +10,47 @@ const routes = [
   },
   {
     path: "/login",
-    name: "Layout",
+    name: "layout",
     component: ()=> import('../page/Layout.vue'),
     children: [{
       path: "/login",
-      name: "Login",
+      name: "login",
       component: ()=> import('../components/layout/Login.vue'),
     },
     {
-      path: "/login/register",
-      name: "Register",
+      path: "/register",
+      name: "register",
       component: ()=> import('../components/layout/Register.vue'),
     }]
   },
   {
     path: "/teacher",
-    name: "Teacher",
+    name: "teacher",
     component: ()=> import('../page/Teacher.vue'),
+    children: [
+      {
+        path: "/assessment",
+        name: "assessment",
+        component: ()=> import('../components/teacher/Assessment.vue'),
+        index: true,
+      },
+      {
+        path: "/evaluate",
+        name: "evaluate",
+        component: ()=> import('../components/teacher/Evaluate.vue'),
+      }
+    ]
   },
   {
     path: "/leader",
-    name: "Leader",
+    name: "leader",
     component: ()=> import('../page/Leader.vue'),
   },
   {
     path: "/supervision",
-    name: "Supervision",
+    name: "supervision",
     component: ()=> import('../page/Supervision.vue'),
   },
-  {
-    path: "/home",
-    name: "Home",
-    component: ()=> import('../components/Home.vue'),
-  }
 ];
 
 const router = createRouter({

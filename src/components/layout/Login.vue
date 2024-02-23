@@ -1,9 +1,9 @@
 <template>
   <div class="q-pa-md" style="min-width: 200px; width: 400px">
-    <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+    <q-form @submit="onLogin" class="q-gutter-md">
       <q-input
         filled
-        v-model="name"
+        v-model="account"
         label="账号"
         hint="请输入账号"
         lazy-rules
@@ -12,24 +12,16 @@
 
       <q-input
         filled
-        v-model="age"
+        type="password"
+        v-model="password"
         label="密码"
+        hint="请输入密码"
         lazy-rules
-        :rules="[
-          (val) => (val !== null && val !== '') || '密码不为空',
-          (val) => (val > 0 && val < 100) || 'Please type a real age',
-        ]"
+        :rules="[(val) => (val !== null && val !== '') || '密码不为空']"
       />
 
-      <q-toggle v-model="accept" label="我同意" />
-
       <div>
-        <q-btn
-        @click="onLogin"
-          label="登录"
-          type="submit"
-          color="primary"
-        />
+        <q-btn label="登录" type="submit" color="primary" />
       </div>
       <p>还没有账号？<a @click="goToRegister">去注册</a></p>
     </q-form>
@@ -40,44 +32,47 @@
 import { useQuasar } from "quasar";
 import { ref } from "vue";
 import router from "../../router";
+// @ts-ignore
+import request from "@/api/index";
 
+// @ts-ignore
 const $q = useQuasar();
 
-const name = ref(null);
-const age = ref(null);
-const accept = ref(false);
+const account = ref(null);
+const password = ref(null);
 
 const goToRegister = () => {
-  router.push('/login/register')
-}
+  router.push("/register");
+};
 
-const onLogin = () => {
-  router.push('/home')
-}
-
-  const onSubmit = ()=> {
-    if (accept.value !== true) {
-      $q.notify({
-        color: "red-5",
-        textColor: "white",
-        icon: "warning",
-        message: "You need to accept the license and terms first",
-      });
-    } else {
-      $q.notify({
-        color: "green-4",
-        textColor: "white",
-        icon: "cloud_done",
-        message: "Submitted",
-      });
+const onLogin = async () => {
+  // @ts-ignore
+  const res = await request.get(
+    `/user/login?account=${account.value}&password=${password.value}`
+  );
+  if (res.data.success) {
+    $q.notify({
+      color: "green-4",
+      textColor: "white",
+      icon: "cloud_done",
+      message: "登录成功",
+    })
+    if (res.data.identity==1){
+      router.push("/teacher");
+    }else if (res.data.identity==2){
+      router.push("/leader");
+    }else {
+      router.push("/supervision");
     }
+  } else {
+    $q.notify({
+      color: "red-5",
+      textColor: "white",
+      icon: "warning",
+      message: res.data.errorMsg,
+    })
   }
-
-  const onReset = ()=> {
-    name.value = null;
-    age.value = null;
-    accept.value = false;
-  }
+};
 </script>
 
 <style scoped lang="scss">

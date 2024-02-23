@@ -10,6 +10,7 @@ import LayoutSvg from "@/components/layout/LayoutSvg.vue";
     </div>
     <div class="right_form">
       <div class="title">教学督导工作管理系统</div>
+      <!-- 子组件的位置 登录和注册表单-->
       <router-view></router-view>
     </div>
   </div>

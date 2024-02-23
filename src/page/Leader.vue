@@ -1,64 +1,34 @@
+<template>
+  <Home  name="leader" :menu-list="menuList3" :updateMenu=updateMenu>
+    <router-view></router-view>
+  </Home>
+</template>
+
 <script setup>
-const menuList = [
-  {
-    icon: "sticky_note_2",
-    label: "教师信息",
-    separator: false,
-  },
-  {
-    icon: "golf_course",
-    label: "督导课表",
-    separator: false,
-  },
-  {
-    icon: "splitscreen",
-    label: "督导任务",
-    separator: false,
-  },
-  {
-    icon: "cast_for_education",
-    label: "督导评教",
-    separator: false,
-  },
-  {
-    icon: "assessment",
-    label: "督导评价",
-    separator: true,
-  },
-  {
-    icon: "send",
-    label: "督导反馈",
-    separator: true,
-  },
-  {
-    icon: "bubble_chart",
-    label: "评价分析",
-    separator: true,
-  },
-  {
-    icon: "upcoming",
-    label: "消息中心",
-    separator: false,
-  },
-  {
-    icon: "account_circle",
-    label: "个人中心",
-    separator: false,
-  },
-  {
-    icon: "error",
-    label: "错误日志",
-    separator: false,
-  },
-  {
-    icon: "subject",
-    label: "操作日志",
-    separator: false,
-  },
-  {
-    icon: "manage_history",
-    label: "敏感词管理",
-    separator: false,
-  },
-];
+import { ref } from "vue";
+import Home from "../components/Home.vue"
+
+// @ts-ignore
+import { useMenuStore } from "@/store/menu";
+
+const {menuList3,updateMenuList} = useMenuStore();
+
+
+const updateMenu = (newMenuList) => {
+  updateMenuList(newMenuList,3);
+}
+
+
 </script>
+
+<style lang="scss" scoped>
+.q-pa-md {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  .q-item {
+    border-radius: 0 32px 32px 0;
+  }
+}
+</style>
