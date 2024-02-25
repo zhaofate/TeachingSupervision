@@ -1,57 +1,57 @@
 // menuStore.js
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useMenuStore = defineStore('menu',{
+export const useMenuStore = defineStore("menu", {
   state: () => ({
-      // @ts-ignore
-      menuList1:JSON.parse(localStorage.getItem('menuList1')) || menuList1,
-      // @ts-ignore
-      menuList2:JSON.parse(localStorage.getItem('menuList2')) || menuList1,
-      // @ts-ignore
-      menuList3:JSON.parse(localStorage.getItem('menuList3')) || menuList1,
+    // @ts-ignore
+    menuList1: JSON.parse(localStorage.getItem("menuList1")) || menuList1,
+    // @ts-ignore
+    menuList2: JSON.parse(localStorage.getItem("menuList2")) || menuList1,
+    // @ts-ignore
+    menuList3: JSON.parse(localStorage.getItem("menuList3")) || menuList1,
   }),
   actions: {
-    updateMenuList(newMenuList,index) {
+    updateMenuList(newMenuList, index) {
       if (index === 1) {
         this.menuList1 = newMenuList;
-        localStorage.setItem('menuList1', JSON.stringify(newMenuList));
+        localStorage.setItem("menuList1", JSON.stringify(newMenuList));
       }
       if (index === 2) {
         this.menuList2 = newMenuList;
-        localStorage.setItem('menuList2', JSON.stringify(newMenuList));
+        localStorage.setItem("menuList2", JSON.stringify(newMenuList));
       }
       if (index === 3) {
         this.menuList3 = newMenuList;
-        localStorage.setItem('menuList3', JSON.stringify(newMenuList));
+        localStorage.setItem("menuList3", JSON.stringify(newMenuList));
       }
     },
   },
 });
-
 
 const menuList1 = [
   {
     icon: "assessment",
     label: "督导评价",
     separator: false,
-    path: "evaluate"
-  },
-  {
-    icon: "send",
-    label: "督导反馈",
-    separator: false,
-
+    path: "evaluate",
   },
   {
     icon: "question_answer",
     label: "教师互评",
     separator: false,
-    path: "assessment"
+    path: "assessment",
   },
   {
     icon: "bubble_chart",
     label: "评价分析",
     separator: false,
+    path: "analysis",
+  },
+  {
+    icon: "school",
+    label: "课程中心",
+    separator: false,
+    path: "course",
   },
   {
     icon: "upcoming",
@@ -63,7 +63,7 @@ const menuList1 = [
     label: "个人中心",
     separator: false,
   },
-]
+];
 
 const menuList2 = [
   {

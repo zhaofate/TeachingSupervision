@@ -1,3 +1,5 @@
+<!-- 主页面布局 -->
+
 <template>
   <div class="q-pa-md" style="overflow-x: hidden;">
     <q-layout
@@ -34,8 +36,8 @@
         </q-list>
       </q-drawer>
 
-      <q-page-container style="width: 100%; overflow-wrap: break-word; overflow-x: hidden;">
-        <q-page padding>
+      <q-page-container style="width: 100%; height: 100%; overflow-wrap: break-word; overflow-x: hidden;">
+        <q-page style="height: 100%;" padding>
           <router-view ></router-view>
         </q-page>
       </q-page-container>

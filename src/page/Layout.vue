@@ -1,3 +1,5 @@
+<!-- 系统入口页面 -->
+
 <script setup>
 // @ts-ignore
 import LayoutSvg from "@/components/layout/LayoutSvg.vue";
