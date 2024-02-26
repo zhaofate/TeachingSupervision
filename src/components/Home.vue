@@ -88,7 +88,13 @@ const $q = useQuasar()
 const msgs = computed(() => msgsStore.getMsgs());
 
 onBeforeMount(async() => {
-  const res = await getMessage();
+  let res 
+  if (localStorage.getItem("msgs") !==null){
+    res = JSON.parse(localStorage.getItem("msgs"))
+  }
+  else {
+    res = await getMessage();
+  }
   msgsStore.setMsgs(res)
 });
 
