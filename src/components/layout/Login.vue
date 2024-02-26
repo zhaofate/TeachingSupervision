@@ -34,6 +34,8 @@ import { ref } from "vue";
 import router from "../../router";
 // @ts-ignore
 import request from "@/api/index";
+// @ts-ignore
+import { useMsgStore } from "@/store/msg";
 
 // @ts-ignore
 const $q = useQuasar();
@@ -56,13 +58,14 @@ const onLogin = async () => {
       textColor: "white",
       icon: "cloud_done",
       message: "登录成功",
-    })
-    if (res.data.identity==1){
+    });
+    let path = ""
+    if (res.data.data.identity === 1) {
       router.push("/teacher");
-    }else if (res.data.identity==2){
-      router.push("/leader");
-    }else {
+    } else if (res.data.data.identity == 2) {
       router.push("/supervision");
+    } else {
+      router.push("/leader");
     }
   } else {
     $q.notify({
@@ -70,9 +73,10 @@ const onLogin = async () => {
       textColor: "white",
       icon: "warning",
       message: res.data.errorMsg,
-    })
+    });
   }
 };
+
 </script>
 
 <style scoped lang="scss">

@@ -25,6 +25,41 @@ export const useMenuStore = defineStore("menu", {
         localStorage.setItem("menuList3", JSON.stringify(newMenuList));
       }
     },
+    updateTrue(path,index) {
+      if (index === 1) {
+      const newMenuList = this.menuList1.map(item => {
+          if(item.path == path) {
+            item.separator=true;
+          }
+          else {
+            item.separator=false;
+          }
+        });
+        localStorage.setItem("menuList1", JSON.stringify(newMenuList));
+      }
+      if (index === 2) {
+        const newMenuList = this.menuList1.map(item => {
+          if(item.path == path) {
+            item.separator=true;
+          }
+          else {
+            item.separator=false;
+          }
+        });
+        localStorage.setItem("menuList2", JSON.stringify(newMenuList));
+      }
+      if (index === 3) {
+        const newMenuList = this.menuList1.map(item => {
+          if(item.path == path) {
+            item.separator=true;
+          }
+          else {
+            item.separator=false;
+          }
+        });
+        localStorage.setItem("menuList3", JSON.stringify(newMenuList));
+      }
+    } 
   },
 });
 
@@ -57,11 +92,13 @@ const menuList1 = [
     icon: "upcoming",
     label: "消息中心",
     separator: false,
+    path: "message",
   },
   {
     icon: "account_circle",
     label: "个人中心",
     separator: false,
+    path: "person",
   },
 ];
 

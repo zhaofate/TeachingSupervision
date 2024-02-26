@@ -15,11 +15,13 @@ const routes = [
     children: [{
       path: "/login",
       name: "login",
+      // @ts-ignore
       component: ()=> import('../components/layout/Login.vue'),
     },
     {
       path: "/register",
       name: "register",
+      // @ts-ignore
       component: ()=> import('../components/layout/Register.vue'),
     }]
   },
@@ -31,8 +33,8 @@ const routes = [
       {
         path: "/assessment",
         name: "assessment",
+        // @ts-ignore
         component: ()=> import('../components/teacher/Assessment.vue'),
-        index: true,
       },
       {
         path: "/evaluate",
@@ -43,6 +45,23 @@ const routes = [
         path: "/analysis",
         name: "analysis",
         component: ()=> import('../components/teacher/Analysis.vue'),
+      },
+      {
+        path: "/course",
+        name: "course",
+        // @ts-ignore
+        component: ()=> import('../components/teacher/Course.vue'),
+      },
+      {
+        path: "/person",
+        name: "person",
+        // @ts-ignore
+        component: ()=> import('../components/teacher/Person.vue'),
+      },
+      {
+        path: "/message",
+        name: "message",
+        component: ()=> import('../components/teacher/Message.vue'),
       },
     ]
   },
@@ -60,6 +79,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(), //路由模式
+  // @ts-ignore
   routes, //存放路由信息
 });
 // 页面路由刚开始切换的时候

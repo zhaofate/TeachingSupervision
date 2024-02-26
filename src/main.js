@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import {
   Quasar,
-  Notify
+  Notify,
+  LocalStorage
 } from 'quasar'
 
 // Import icon libraries
@@ -23,7 +24,8 @@ app.use(pinia)
 
 app.use(Quasar, {
   plugins: {
-    Notify
+    Notify,
+    LocalStorage,
   },
   config: {
     notify: {
