@@ -13,7 +13,6 @@ import { useMenuStore } from "@/store/menu";
 
 const {menuList3,updateMenuList} = useMenuStore();
 
-
 const updateMenu = (newMenuList) => {
   updateMenuList(newMenuList,3);
 }

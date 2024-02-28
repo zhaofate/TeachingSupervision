@@ -292,7 +292,7 @@ const updateFiles = async (newFiles) => {
     }, 3000);
   }
   else {
-    $q.notify({
+        $q.notify({
       color: "red-5",
       textColor: "white",
       icon: "warning",
@@ -348,14 +348,33 @@ const getCourse = (section, day) => {
 // 获取全部课程信息
 const getCourseAll = async () => {
   const res = await request.get("/teacher/all");
-  return res.data.data;
+  if(res.data.success) {
+    return res.data.data;
+  }
+  else {
+    $q.notify({
+      color: "red-5",
+      textColor: "white",
+      icon: "warning",
+      message: res.data.errorMsg,
+    });
+  }
 };
 
 // 获取课程信息
 const getCourseByWeek = async (data) => {
   const res = await request.get("/teacher/week", { week: data });
-  console.log(res.data.data);
-  return res.data.data;
+  if(res.data.success) {
+    return res.data.data;
+  }
+  else {
+    $q.notify({
+      color: "red-5",
+      textColor: "white",
+      icon: "warning",
+      message: res.data.errorMsg,
+    });
+  }
 };
 
 // 更新课程数据

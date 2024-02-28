@@ -139,7 +139,7 @@ const onRegister = async () => {
       color: "green-4",
       textColor: "white",
       icon: "cloud_done",
-      message: "登录成功",
+      message: "注册成功",
     })
     router.push('/login')
   }

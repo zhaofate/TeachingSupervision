@@ -1,5 +1,5 @@
 <template>
-  <Home  name="supervision" :menu-list="menuList2" :updateMenu=updateMenu>
+  <Home  name="super" :menu-list="menuList2" :updateMenu=updateMenu>
     <router-view></router-view>
   </Home>
 </template>
@@ -13,11 +13,9 @@ import { useMenuStore } from "@/store/menu";
 
 const {menuList2,updateMenuList} = useMenuStore();
 
-
 const updateMenu = (newMenuList) => {
   updateMenuList(newMenuList,2);
 }
-
 
 </script>
 

@@ -74,6 +74,50 @@ const routes = [
     path: "/supervision",
     name: "supervision",
     component: ()=> import('../page/Supervision.vue'),
+    children:[
+      {
+        path: "/teachers",
+        name: "teachers",
+        // @ts-ignore
+        component: ()=> import('../components/supervision/Teachers.vue'),
+      },
+      {
+        path: "/teachers",
+        name: "teachers",
+        // @ts-ignore
+        component: ()=> import('../components/supervision/Teachers.vue'),
+      },      {
+        path: "/sCourse",
+        name: "sCourse",
+        // @ts-ignore
+        component: ()=> import('../components/supervision/sCourse.vue'),
+      },      {
+        path: "/task",
+        name: "task",
+        // @ts-ignore
+        component: ()=> import('../components/supervision/Task.vue'),
+      },      {
+        path: "/sEvaluate",
+        name: "sEvaluate",
+        // @ts-ignore
+        component: ()=> import('../components/supervision/sEvaluate.vue'),
+      },      {
+        path: "/sFeedback",
+        name: "sFeedback",
+        // @ts-ignore
+        component: ()=> import('../components/supervision/sFeedback.vue'),
+      },      {
+        path: "/sMessage",
+        name: "sMessage",
+        // @ts-ignore
+        component: ()=> import('../components/supervision/sMessage.vue'),
+      },      {
+        path: "/sPerson",
+        name: "sPerson",
+        // @ts-ignore
+        component: ()=> import('../components/supervision/sPerson.vue'),
+      },
+    ]
   },
 ];
 

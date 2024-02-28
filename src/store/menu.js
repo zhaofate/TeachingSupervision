@@ -6,9 +6,9 @@ export const useMenuStore = defineStore("menu", {
     // @ts-ignore
     menuList1: JSON.parse(localStorage.getItem("menuList1")) || menuList1,
     // @ts-ignore
-    menuList2: JSON.parse(localStorage.getItem("menuList2")) || menuList1,
+    menuList2: JSON.parse(localStorage.getItem("menuList2")) || menuList2,
     // @ts-ignore
-    menuList3: JSON.parse(localStorage.getItem("menuList3")) || menuList1,
+    menuList3: JSON.parse(localStorage.getItem("menuList3")) || menuList3,
   }),
   actions: {
     updateMenuList(newMenuList, index) {
@@ -107,41 +107,48 @@ const menuList2 = [
     icon: "sticky_note_2",
     label: "教师信息",
     separator: false,
+    path: "teachers"
   },
   {
     icon: "cast_for_education",
     label: "督导课表",
     separator: false,
+    path: "sCourse",
   },
   {
     icon: "splitscreen",
     label: "督导任务",
     separator: false,
+    path: "task",
   },
   {
     icon: "assessment",
     label: "督导评价",
     separator: false,
+    path: "sEvaluate",
   },
   {
     icon: "send",
     label: "督导反馈",
     separator: false,
+    path: "sFeedback"
   },
-  {
-    icon: "bubble_chart",
-    label: "评价分析",
-    separator: false,
-  },
+  // {
+  //   icon: "bubble_chart",
+  //   label: "评价分析",
+  //   separator: false,
+  // },
   {
     icon: "upcoming",
     label: "消息中心",
     separator: false,
+    path: "sMessage"
   },
   {
     icon: "account_circle",
     label: "个人中心",
     separator: false,
+    path: "sPerson"
   },
 ];
 
