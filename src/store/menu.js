@@ -25,41 +25,28 @@ export const useMenuStore = defineStore("menu", {
         localStorage.setItem("menuList3", JSON.stringify(newMenuList));
       }
     },
-    updateTrue(path,index) {
+    updateTrue(path, index) {
       if (index === 1) {
-      const newMenuList = this.menuList1.map(item => {
-          if(item.path == path) {
-            item.separator=true;
-          }
-          else {
-            item.separator=false;
+        const newMenuList = this.menuList1.map((item) => {
+          if (item.path == path) {
+            item.separator = true;
+          } else {
+            item.separator = false;
           }
         });
         localStorage.setItem("menuList1", JSON.stringify(newMenuList));
       }
       if (index === 2) {
-        const newMenuList = this.menuList1.map(item => {
-          if(item.path == path) {
-            item.separator=true;
-          }
-          else {
-            item.separator=false;
+        const newMenuList = this.menuList2.map((item) => {
+          if (item.path == path) {
+            item.separator = true;
+          } else {
+            item.separator = false;
           }
         });
         localStorage.setItem("menuList2", JSON.stringify(newMenuList));
       }
-      if (index === 3) {
-        const newMenuList = this.menuList1.map(item => {
-          if(item.path == path) {
-            item.separator=true;
-          }
-          else {
-            item.separator=false;
-          }
-        });
-        localStorage.setItem("menuList3", JSON.stringify(newMenuList));
-      }
-    } 
+    },
   },
 });
 
@@ -107,7 +94,7 @@ const menuList2 = [
     icon: "sticky_note_2",
     label: "教师信息",
     separator: false,
-    path: "teachers"
+    path: "teachers",
   },
   {
     icon: "cast_for_education",
@@ -131,86 +118,63 @@ const menuList2 = [
     icon: "send",
     label: "督导反馈",
     separator: false,
-    path: "sFeedback"
+    path: "sFeedback",
   },
-  // {
-  //   icon: "bubble_chart",
-  //   label: "评价分析",
-  //   separator: false,
-  // },
   {
     icon: "upcoming",
     label: "消息中心",
     separator: false,
-    path: "sMessage"
+    path: "sMessage",
   },
   {
     icon: "account_circle",
     label: "个人中心",
     separator: false,
-    path: "sPerson"
+    path: "sPerson",
   },
 ];
 
 const menuList3 = [
   {
     icon: "sticky_note_2",
-    label: "教师信息",
+    label: "用户管理",
     separator: false,
+    path: "lTeacher",
   },
   {
     icon: "golf_course",
-    label: "督导课表",
+    label: "课程中心",
     separator: false,
+    path: "lCourse",
   },
   {
     icon: "splitscreen",
     label: "督导任务",
     separator: false,
-  },
-  {
-    icon: "cast_for_education",
-    label: "督导评教",
-    separator: false,
-  },
-  {
-    icon: "assessment",
-    label: "督导评价",
-    separator: true,
-  },
-  {
-    icon: "send",
-    label: "督导反馈",
-    separator: true,
-  },
-  {
-    icon: "bubble_chart",
-    label: "评价分析",
-    separator: true,
-  },
-  {
-    icon: "upcoming",
-    label: "消息中心",
-    separator: false,
-  },
-  {
-    icon: "account_circle",
-    label: "个人中心",
-    separator: false,
-  },
-  {
-    icon: "error",
-    label: "错误日志",
-    separator: false,
-  },
-  {
-    icon: "subject",
-    label: "操作日志",
-    separator: false,
+    path: "lTask",
   },
   {
     icon: "manage_history",
     label: "敏感词管理",
     separator: false,
+    path: "word",
+  },
+  {
+    icon: "account_circle",
+    label: "个人中心",
+    separator: false,
+    path: "lPerson",
+  },
+  {
+    icon: "error",
+    label: "错误日志",
+    separator: false,
+    path: "error",
+  },
+  {
+    icon: "subject",
+    label: "操作日志",
+    separator: false,
+    path: "operate",
   },
 ];

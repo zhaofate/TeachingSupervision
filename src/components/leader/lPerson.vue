@@ -93,7 +93,7 @@ onMounted(async () => {
 
 // 获取个人信息
 const getInfo = async () => {
-  const res = await request.get("/teacher/myInfo");
+  const res = await request.get("/leader/myInfo");
   return res.data.data;
 };
 

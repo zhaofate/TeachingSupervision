@@ -140,7 +140,9 @@
                 ><q-item-label
                   >{{ item.comments }}
                   <q-item-label caption class="q-mt-md">
-                    评价了{{ item.name }}老师&nbsp;&nbsp;{{ item.commentTime }}</q-item-label
+                    评价了{{ item.name }}老师&nbsp;&nbsp;{{
+                      item.commentTime
+                    }}</q-item-label
                   ></q-item-label
                 >
               </q-item-section>
@@ -159,12 +161,18 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <q-input dense v-model="commentInfo.comment" autofocus autogrow />
+          <q-input
+            dense
+            v-model="commentInfo.comment"
+            autofocus
+            autogrow
+            :rules="[(val) => (val && val.length > 0) || '不为空']"
+          />
         </q-card-section>
 
         <q-card-actions fixed-right class="text-primary">
           <q-btn flat label="取消" v-close-popup />
-          <q-btn flat label="确定" v-close-popup @click="handleCommentBtn()" />
+          <q-btn flat label="确定" @click="handleCommentBtn()" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -192,28 +200,31 @@ let commentInfo = reactive({
 let commentControl = ref(true);
 
 const handleCommentBtn = async () => {
-  // 提交评论
-  const res = await request.get("/teacher/comment", commentInfo);
-  if (res.data.success) {
-    $q.notify({
-      color: "green-4",
-      textColor: "white",
-      icon: "cloud_done",
-      message: "评论成功",
-    });
-    await updateMyComments();
-  } else {
-    $q.notify({
-      color: "red-5",
-      textColor: "white",
-      icon: "warning",
-      message: res.data.errorMsg,
-    });
+  if (commentInfo.comment) {
+    // 提交评论
+    const res = await request.get(`/teacher/comment?to=${commentInfo.to}&comment=${commentInfo.comment}`);
+    if (res.data.success) {
+      $q.notify({
+        color: "green-4",
+        textColor: "white",
+        icon: "cloud_done",
+        message: "评论成功",
+      });
+      await updateMyComments();
+      commentFrame.value = false;
+    } else {
+      $q.notify({
+        color: "red-5",
+        textColor: "white",
+        icon: "warning",
+        message: res.data.errorMsg,
+      });
+    }
+    commentInfo = {
+      to: null,
+      comment: "",
+    };
   }
-  commentInfo = {
-    to: null,
-    comment: "",
-  };
 };
 
 const getTeachers = async () => {

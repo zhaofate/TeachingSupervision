@@ -63,7 +63,7 @@ const {updateTrue} = useMenuStore();
 // 点击消息弹框
 const handleMsgBtn = (index) => {
   router.push("/task")
-  updateTrue('evaluate',2);
+  updateTrue('task',2);
   showBadgeList.value = showBadgeList.value.filter(i => i !== index);
   $q.localStorage.set("showBadgeList", showBadgeList.value)
   msgsStore.setMsgs(msgsStore.getMsgs() - 1)
@@ -71,7 +71,7 @@ const handleMsgBtn = (index) => {
 
 onMounted(async () => {
   msgList.value = await getMessage();
-  const data = msgList.value.map((item,index)=> index)
+  const data = msgList.value?.map((item,index)=> index)
   showBadgeList.value = $q.localStorage.getItem("showBadgeList") || data;
   $q.localStorage.set("showBadgeList", showBadgeList.value)
 });

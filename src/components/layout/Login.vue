@@ -34,8 +34,9 @@ import { ref } from "vue";
 import router from "../../router";
 // @ts-ignore
 import request from "@/api/index";
-// @ts-ignore
-import { useMsgStore } from "@/store/msg";
+import { useTokenStore } from '@/store/token';
+
+const {setToken,getToken} = useTokenStore();
 
 // @ts-ignore
 const $q = useQuasar();
@@ -53,6 +54,7 @@ const onLogin = async () => {
     `/user/login?account=${account.value}&password=${password.value}`
   );
   if (res.data.success) {
+    setToken(res.data.data.token)
     $q.notify({
       color: "green-4",
       textColor: "white",
@@ -75,6 +77,7 @@ const onLogin = async () => {
       message: res.data.errorMsg,
     });
   }
+      
 };
 
 </script>

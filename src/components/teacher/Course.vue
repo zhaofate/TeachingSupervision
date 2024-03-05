@@ -363,7 +363,7 @@ const getCourseAll = async () => {
 
 // 获取课程信息
 const getCourseByWeek = async (data) => {
-  const res = await request.get("/teacher/week", { week: data });
+  const res = await request.get("/teacher/week?week="+data);
   if(res.data.success) {
     return res.data.data;
   }

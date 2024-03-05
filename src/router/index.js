@@ -15,7 +15,6 @@ const routes = [
     children: [{
       path: "/login",
       name: "login",
-      // @ts-ignore
       component: ()=> import('../components/layout/Login.vue'),
     },
     {
@@ -69,6 +68,41 @@ const routes = [
     path: "/leader",
     name: "leader",
     component: ()=> import('../page/Leader.vue'),
+    children: [
+      {
+        path: "/lTeacher",
+        name: "lTeacher",
+
+        component: ()=> import('../components/leader/lTeacher.vue'),
+      },
+      {
+        path: "/lCourse",
+        name: "lCourse",
+        component: ()=> import('../components/leader/lCourse.vue'),
+      },      {
+        path: "/lTask",
+        name: "lTask",
+        component: ()=> import('../components/leader/lTask.vue'),
+      },      {
+        path: "/word",
+        name: "word",
+        component: ()=> import('../components/leader/Word.vue'),
+      },      {
+        path: "/lPerson",
+        name: "lPerson",
+        component: ()=> import('../components/leader/lPerson.vue'),
+      },      {
+        path: "/error",
+        name: "error",
+        // @ts-ignore
+        component: ()=> import('../components/leader/Error.vue'),
+      },      {
+        path: "/operate",
+        name: "operate",
+        // @ts-ignore
+        component: ()=> import('../components/leader/Operate.vue'),
+      },
+    ]
   },
   {
     path: "/supervision",

@@ -148,9 +148,9 @@
 
         <q-item style="width: 100%">
           <q-item-section>
-            <q-item-label class="q-mb-md q-mt-md"> 授课教师名称：</q-item-label>
-            <q-item-label class="q-mb-md"> 课程名称：</q-item-label>
-            <q-item-label class="q-mb-md"> 授课班级：</q-item-label>
+            <q-item-label class="q-mb-md q-mt-md"> 授课教师名称：{{ task.teacherName }}</q-item-label>
+            <q-item-label class="q-mb-md"> 课程名称：{{ task.course.className}}</q-item-label>
+            <q-item-label class="q-mb-md"> 授课班级：{{ task.course.name }}</q-item-label>
           </q-item-section>
         </q-item>
         <q-separator />
@@ -217,6 +217,8 @@
             filled
             color="blue-6"
             label="你的评语"
+            autofocus
+            autogrow
             :rules="[(val) => (val && val.length > 0) || '评语不为空']"
           />
         </q-item>
@@ -317,7 +319,6 @@ onMounted(() => {
 
 // 评分提交
 const handleEvaluate = async () => {
-  console.log(evaluateFrom);
   // 检查
   if (checkAllSelected()) {
     const allScore = evaluateFrom.value.reduce(
@@ -327,7 +328,7 @@ const handleEvaluate = async () => {
     const score = (allScore / evaluateFrom.value.length).toFixed(2);
     // @ts-ignore
     evaluateInfo.score = score;
-    const res = await request.get("/super/allReceived",evaluateFrom.value)
+    const res = await request.get(`/super/allReceived?taskId=${evaluateInfo.taskId}&comments=${evaluateInfo.comments}&score=${evaluateInfo.score}`);
     if(res.data.success){
       $q.notify({
       color: "green-4",
@@ -364,6 +365,7 @@ const handleEvaluate = async () => {
 const handleEvaluateBtn = (item) => {
   evaluateInfoControl.value = true;
   evaluateInfo.taskId = item.id;
+  task.value = item
 };
 
 // 置空评论表单

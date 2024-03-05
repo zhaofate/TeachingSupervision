@@ -12,6 +12,20 @@
         <q-toolbar>
           <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
           <q-toolbar-title>Teaching Supervision</q-toolbar-title>
+          <div class="q-pl-md q-gutter-sm row no-wrap items-center">
+
+            <q-btn round flat>
+            <q-avatar size="26px">
+              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            </q-avatar>
+          </q-btn>
+
+          <q-btn round dense flat color="grey-8" icon="logout" @click="layout()">
+            <q-tooltip>登出</q-tooltip>
+          </q-btn>
+
+
+        </div>
         </q-toolbar>
       </q-header>
 
@@ -40,7 +54,7 @@
                 <q-item-label v-else="menuItem.icon === 'upcoming'">
                   {{ menuItem.label }}
                   <q-badge
-                    v-if="msgs !== 0"
+                    v-if="msgs > 0"
                     align="middle"
                     rounded
                     color="red"
@@ -116,10 +130,15 @@ const props = defineProps({
 
 // 获取未读消息
 const getMessage = async () => {
-  const path = "/" + props.name + "/notification";
+  if (props.name == "leader"){
+    return 0;
+  }
+  else {
+    const path = "/" + props.name + "/notification";
   const res = await request.get(path);
   const data = res.data.data;
   return data.length;
+  }
 };
 
 
@@ -140,6 +159,21 @@ const handleClick = (index) => {
   // @ts-ignore
   router.push(props.menuList[index].path);
 };
+
+//登出
+const layout = async () =>{
+  const res = await request.get('/user/logout')
+  if(res.data.success) {
+    $q.notify({
+      color: "green-4",
+      textColor: "white",
+      icon: "cloud_done",
+      message: "登出",
+    });
+    localStorage.clear();
+    router.push('/login')
+  }
+}
 
 const drawer = ref(false);
 </script>

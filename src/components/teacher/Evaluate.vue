@@ -107,7 +107,7 @@ const feedbackFrame = ref(false);
 
 // 反馈处理
 const handleFeedbackBtn = async () => {
-  const res = await request.get("/teacher/feedback", feedbackInfo);
+  const res = await request.get(`/teacher/feedback?supervisionId=${feedbackInfo.supervisionId}&feedback=${feedbackInfo.feedback}`);
   if (res.data.success) {
     $q.notify({
       color: "green-4",

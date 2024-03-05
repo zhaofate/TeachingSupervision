@@ -1,4 +1,4 @@
-<!-- 督导课表 -->
+<!-- 课程中心 -->
 
 <template>
   <div style="color: black">
@@ -207,8 +207,7 @@ const getCourse = (section, day) => {
 
 // 获取课程信息
 const getCourseByWeek = async (data) => {
-console.log(data);
-  const res = await request.get(`/super/curriculum?id=${data.value.id}&week=${data.value.week}`);
+  const res = await request.get(`/leader/curriculum?id=${data.value.id}&week=${data.value.week}`);
   if(res.data.success) {
     seriousData.value = res.data.data;
   }

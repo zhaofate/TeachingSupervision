@@ -27,8 +27,10 @@
           type="number"
           style="width: 30%"
           lazy-rules
-          :rules="[(val) => (val) || '年龄不为空',
-        val => val > 0 && val < 100 || '输入正确年龄']"
+          :rules="[
+        val => !!val || '年龄不能为空',
+        val => (val >= 20 && val <= 100) || '请输入正确的年龄（20到100之间）'
+      ]"
         />
       </div>
 
@@ -108,7 +110,7 @@ const $q = useQuasar();
 
 const genderOptions = ["男", "女"];
 const identityOptions = ["教师","督导教师","督导组长"]
-const professionalTypeOptions = ["软件工程"]
+const professionalTypeOptions = ["软件工程","计算机技术与科学","网络安全","区块链","大气与科学"]
 
 const regForm = reactive({
   name: "",
@@ -133,7 +135,6 @@ const onRegister = async () => {
   // @ts-ignore
   reqestData.identity = identityOptions.indexOf(reqestData.identity) + 1;
   const res = await request.post('/user/reg',reqestData)
-  console.log(res);
   if (res.data.success) {
     $q.notify({
       color: "green-4",
